@@ -186,7 +186,7 @@
                 <div class="promo_block-left">
                     <h1>Ремонт квартир от 2490 р/м2</h1>
                     <h2 class="promo_subtitle">Пройдите тест из 5 вопросов, получите точную смету и сроки ремонта. Сегодня натяжные потолки в подарок.</h2>
-                    <a style="cursor: pointer;" class="popup-callback" onclick="Marquiz.showModal('6172b47065ecd3003f932a70')">Рассчитать стоимость</a>
+                    <a style="cursor: pointer;" class="popup-callback" onclick="quiz.open()">Рассчитать стоимость</a>
                 </div>
                 <div class="promo_block-right">
                     <ul>
@@ -198,7 +198,7 @@
                     </ul>
                     <div class="dn">
                         <h2 class="promo_subtitle">Пройдите тест из 5 вопросов, получите точную смету и сроки ремонта. Сегодня натяжные потолки в подарок.</h2>
-                        <a style="cursor: pointer;" class="popup-callback" onclick="Marquiz.showModal('6172b47065ecd3003f932a70')">Рассчитать стоимость</a>
+                        <a style="cursor: pointer;" class="popup-callback" onclick="quiz.open()">Рассчитать стоимость</a>
                     </div>
                 </div>
             </div>
@@ -1910,6 +1910,9 @@
             <p>Да. Стоимость дизайн-проекта с полной рабочей документацией начинается с 700 руб/м2.</p>
         </div>
     </div>
+    <!-- quiz -->
+    <div id="App"></div>
+    <!-- .quiz -->
 
     <script src="js/jquery-3.4.0.min.js"></script>
     <script src="js/jquery.maskedinput.min.js"></script>
@@ -1921,107 +1924,15 @@
     <!-- append -->
     <script src="js/forms.js?v4"></script>
     <!-- .append -->
+    <!-- quiz -->
+    <script src="js/quiz/base.js"></script>
+    <script src="js/quiz/modal.js"></script>
+    <script src="js/quiz/index.js"></script>
+    <!-- .quiz -->
     
     <!-- Yandex.Metrika special target -->
     <script>
     setTimeout('ym(82183891, "reachGoal","15sec")', 15000);
     </script>
-    <!-- quiz -->
-    <div class="quiz-widget">
-        <div class="quiz-widget__overlay"></div>
-        <div class="quiz-widget__wrap">
-            <div class="quiz-widget__container">
-                <section class="quiz-widget__sidebar">
-                    <div class="quiz-widget__close-button">
-                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.22566 4.81096C5.83514 4.42044 5.20197 4.42044 4.81145 4.81096C4.42092 5.20148 4.42092
-                5.83465 4.81145 6.22517L10.5862 11.9999L4.81151 17.7746C4.42098 18.1651 4.42098 18.7983 4.81151 19.1888C5.20203
-                19.5793 5.8352 19.5793 6.22572 19.1888L12.0004 13.4141L17.7751 19.1888C18.1656 19.5793 18.7988 19.5793 19.1893
-                19.1888C19.5798 18.7983 19.5798 18.1651 19.1893 17.7746L13.4146 11.9999L19.1893 6.22517C19.5799 5.83465 19.5799
-                5.20148 19.1893 4.81096C18.7988 4.42044 18.1657 4.42044 17.7751 4.81096L12.0004 10.5857L6.22566 4.81096Z" fill="#fff"/>
-                        </svg>
-                    </div>
-                    <div class="quiz-widget__main">
-                        <div class="quiz-widget__content">
-                            <h1 class="quiz-widget__title">Какой у вас тип жилья?</h1>
-                            <div class="quiz-widget__questions-list">
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира вторичка">
-                                    <span class="checked"></span>
-                                    <span>Квартира вторичка</span>
-                                </label>
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира новостройка">
-                                    <span class="checked"></span>
-                                    <span>Квартира новостройка</span>
-                                </label>
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира новостройка">
-                                    <span class="checked"></span>
-                                    <span>Квартира новостройка</span>
-                                </label>
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира новостройка">
-                                    <span class="checked"></span>
-                                    <span>Квартира новостройка</span>
-                                </label>
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира новостройка">
-                                    <span class="checked"></span>
-                                    <span>Квартира новостройка</span>
-                                </label>
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира новостройка">
-                                    <span class="checked"></span>
-                                    <span>Квартира новостройка</span>
-                                </label>
-                                <label class="quiz-widget__questions-item">
-                                    <input type="radio" name="radio" value="Квартира новостройка">
-                                    <span class="checked"></span>
-                                    <span>Квартира новостройка</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="quiz-widget__footer">
-                            <div class="quiz-widget__steps">
-                                <div class="quiz-widget__steps-text">Шаг</div>
-                                <div class="quiz-widget__steps-numeric">
-                                    <div class="quiz-widget__steps-howMany">1</div>
-                                    <div class="quiz-widget__steps-text-from">из</div>
-                                    <div class="quiz-widget__steps-fromHowMany">5</div>
-                                </div>
-                            </div>
-                            <div class="quiz-widget__steps-buttons">
-                                <div class="quiz-widget__btn quiz-widget__btn--prev" aria-label="Предыдущий шаг">
-                                    <svg width="24px" height="24px" viewBox="0 0 24 24"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" fill="#fff"/>
-                                    </svg>
-                                </div>
-                                <div class="quiz-widget__btn quiz-widget__btn--next">
-                                    <span class="text">Далее</span>
-                                    <span class="arrow">
-                                    <svg width="24px" height="24px" viewBox="0 0 24 24"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" fill="#fff"/>
-                                    </svg>
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quiz-widget__aside">
-                        <div class="quiz-widget__bonus">
-                            <div class="quiz-widget__bonus-img-container">
-                                <span class="quiz-widget__bonus-text">Натяжные потолки</span>
-                                <img class="quiz-widget__bonus-img" src="/img/22-2.jpg" alt="Бонус">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <!-- .quiz -->
 </body>
 </html>
