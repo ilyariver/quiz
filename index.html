@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/quiz.css">
     <!-- append -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
@@ -87,6 +88,7 @@
 
 
 <!-- Marquiz script start -->
+<<<<<<< HEAD
 <script>
 (function(w, d, s, o){
   var j = d.createElement(s); j.async = true; j.src = 'http://script.marquiz.ru/v2.js';j.onload = function() {
@@ -107,6 +109,28 @@
   }
 );
 </script>
+=======
+<!--<script>-->
+<!--(function(w, d, s, o){-->
+<!--  var j = d.createElement(s); j.async = true; j.src = '//script.marquiz.ru/v2.js';j.onload = function() {-->
+<!--    if (document.readyState !== 'loading') Marquiz.init(o);-->
+<!--    else document.addEventListener("DOMContentLoaded", function() {-->
+<!--      Marquiz.init(o);-->
+<!--    });-->
+<!--  };-->
+<!--  d.head.insertBefore(j, d.head.firstElementChild);-->
+<!--})(window, document, 'script', {-->
+<!--    host: '//quiz.marquiz.ru',-->
+<!--    region: 'eu',-->
+<!--    id: '6172b47065ecd3003f932a70',-->
+<!--    autoOpen: false,-->
+<!--    autoOpenFreq: 'once',-->
+<!--    openOnExit: false,-->
+<!--    disableOnMobile: false-->
+<!--  }-->
+<!--);-->
+<!--</script>-->
+>>>>>>> QuizeVidget
 <!-- Marquiz script end -->
 
 
@@ -185,7 +209,7 @@
                 <div class="promo_block-left">
                     <h1>Ремонт квартир от 2490 р/м2</h1>
                     <h2 class="promo_subtitle">Пройдите тест из 5 вопросов, получите точную смету и сроки ремонта. Сегодня натяжные потолки в подарок.</h2>
-                    <a style="cursor: pointer;" class="popup-callback" onclick="Marquiz.showModal('6172b47065ecd3003f932a70')">Рассчитать стоимость</a>
+                    <a style="cursor: pointer;" class="popup-callback" onclick="quiz.open()">Рассчитать стоимость</a>
                 </div>
                 <div class="promo_block-right">
                     <ul>
@@ -197,7 +221,7 @@
                     </ul>
                     <div class="dn">
                         <h2 class="promo_subtitle">Пройдите тест из 5 вопросов, получите точную смету и сроки ремонта. Сегодня натяжные потолки в подарок.</h2>
-                        <a style="cursor: pointer;" class="popup-callback" onclick="Marquiz.showModal('6172b47065ecd3003f932a70')">Рассчитать стоимость</a>
+                        <a style="cursor: pointer;" class="popup-callback" onclick="quiz.open()">Рассчитать стоимость</a>
                     </div>
                 </div>
             </div>
@@ -1910,6 +1934,13 @@
         </div>
     </div>
 
+    <!-- quiz -->
+    <div id="App"></div>
+
+    <script src="js/quiz/base.js"></script>
+    <script src="js/quiz/modal.js"></script>
+    <script src="js/quiz/index.js"></script>
+    <!-- .quiz -->
     <script src="js/jquery-3.4.0.min.js"></script>
     <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -1925,6 +1956,5 @@
     <script>
     setTimeout('ym(82183891, "reachGoal","15sec")', 15000);
     </script>
-
 </body>
 </html>

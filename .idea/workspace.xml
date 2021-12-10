@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="327dd974-1f53-4d2f-b16c-3b5b0805c820" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/quiz.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/quiz.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/padlock.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/quiz/base.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/quiz/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/quiz/modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/mailsend.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/mailsend.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/mailsendfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/mailsendfile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

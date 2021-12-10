@@ -14,7 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $fieldsHtml = $fieldsHtml."<b>".$field["name"]."</b>: ".$field["value"]."<br/><br/>";
     }
 
-    $EmailTo = "lead@sk-sapfir.ru";
+//     $EmailTo = "lead@sk-sapfir.ru";
+
+    $EmailTo = "bucks20007@gmail.com";
     // $EmailTo = "snakevzmail@gmail.com";
     // $EmailTo = "gurievsky@mail.ru";
 

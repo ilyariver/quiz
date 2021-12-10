@@ -1,8 +1,9 @@
 <?php
 if (isset ($_POST['phone'])) {
   // $to = "example@gmail.com";
-  $to = "lead@sk-sapfir.ru";
+//   $to = "lead@sk-sapfir.ru";
   // $to = "snakevzmail@gmail.com";
+  $to = "bucks20007@gmail.com";
   $from = "mail@sk-sapfir.ru";
   // $from = "sk-ermitage.ru";
   // $subject = "Заполнена контактная форма на сайте ".$_SERVER['HTTP_REFERER'];
