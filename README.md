@@ -1,2 +1,0 @@
-# quiz
-widget development

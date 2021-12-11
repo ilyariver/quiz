@@ -16,7 +16,7 @@ $$.modal = function(options) {
 	                <section class="quiz-widget__sidebar" data-sidebar>
 	                    <div class="quiz-widget__main js-main-content">
 	                        <div class="quiz-widget__content js-content" data-content data-animation-block> </div>
-	                        <div class="quiz-widget__footer">
+	                        <div class="quiz-widget__footer js-footer">
 	                            <div class="quiz-widget__steps">
 	                                <div class="quiz-widget__steps-text">Шаг</div>
 	                                <div class="quiz-widget__steps-numeric">
@@ -58,7 +58,7 @@ $$.modal = function(options) {
 	                            </div>
 	                        </div>
 	                    </div>
-	                    <div class="quiz-widget__aside">
+	                    <div class="quiz-widget__aside js-aside">
 	                        <div class="quiz-widget__bonus">
 	                            <div class="quiz-widget__bonus-img-container">
 	                                <span class="quiz-widget__bonus-text">Натяжные потолки</span>
@@ -142,7 +142,7 @@ $$.modal = function(options) {
 
 	// контент модалки с вопросами
 	const _setQuestionsContent = options => `
-		<h1 class="quiz-widget__title" data-animation>${options.questions}</h1>
+		<h1 class="quiz-widget__title" data-animation>${options.questions.title}</h1>
     <div class="quiz-widget__questions-list">${options.answers.map(item => {
 			// если есть описание блока овета
 			if (typeof item === 'object') {
@@ -171,8 +171,8 @@ $$.modal = function(options) {
 
 	// контент модалки с формой
 	const _setModalForm = () => `
-		<div class="form">
-      <div class="form__left">
+		<div class="form js-form-wrap">
+      <div class="form__left js-form-left">
         <div class="form__message-content">
           <h1 class="form__title">На какой номер отправить расчет сроков и стоимости ремонта?</h1>
           <div class="form__bonus-title">ВАШ БОНУС</div>
@@ -184,20 +184,20 @@ $$.modal = function(options) {
           </div>
         </div>
       </div>
-      <div class="form__right">
-        <form class="form__container">
+      <div class="form__right js-form-right">
+        <form class="form__container js-form" action data-name="quiz">
           <div class="form__field">
             <div class="form__field-name">Введите имя*</div>
-            <input type="text" class="form__input">
+            <input type="text" name="name" class="form__input" data-input>
             <div class="form__field-icon"></div>
           </div>
           <div class="form__field error_div">
             <div class="form__field-name">Введите телефон*</div>
-            <input type="text" name="phone" class="form__input">
+            <input type="text" name="phone" class="form__input js-phone-input" maxlength="12" data-input>
             <div class="form__field-icon"></div>
           </div>
           <div class="form__button-wrap">
-            <button class="form__button">Далее</button>
+            <button type="submit" class="form__button js-send-form-btn">Далее</button>
           </div>
           <p class="form__annotation">Я принимаю условия передачи информации</p>
         </form>
@@ -224,22 +224,27 @@ $$.modal = function(options) {
 	// отображение первой страницы вопросов при инициализации квиза
 	renderNextQuestion(START_QUESTION_PAGE)
 
+	// мутоды
 	const modal = {
 		// открыть модалку
 		open() {
 			if (destroyed) console.log('Modal is destroyed')
 			!closing && $modal.classList.add('open')
+			let scrollWidth = window.innerWidth - document.body.clientWidth;
+
 			document.querySelector('html').style.overflow = 'hidden'
+			document.querySelector('html').style.marginRight = scrollWidth + 'px'
 		},
 		// закрыть модалку
 		close() {
 			closing = true
-			document.querySelector('html').style.overflow = ''
 			$modal.classList.remove('open')
 			$modal.classList.add('hide')
 			setTimeout(() => {
 				closing = false
 				$modal.classList.remove('hide')
+				document.querySelector('html').style.overflow = ''
+				document.querySelector('html').style.marginRight = ''
 			}, ANIMATION_SPEED)
 		},
 		setQuestionsContent(modalContent, id) {
@@ -292,7 +297,7 @@ $$.modal = function(options) {
 					// разблокировать кнопку назад
 					addActionLockButtons($prevBtn, 'enabled')
 					addActionLockButtons($nextBtn, 'disabled')
-					document.removeEventListener('keyup', createNextQuestionsHandler)
+					// document.removeEventListener('keyup', createNextQuestionsHandler)
 					// console.log('----answer удалил обработчик----')
 
 					break
@@ -313,20 +318,14 @@ $$.modal = function(options) {
 					}
 					// блокируем кнопку, если следующие вопросы еще не были пройдены
 					blockWithUnansweredQuestions(nextBlock)
-					document.removeEventListener('keyup', createNextQuestionsHandler)
+					// document.removeEventListener('keyup', createNextQuestionsHandler)
 					// console.log('----prev удалил обработчик----')
 
 
 					break
 
 				case 'next':
-					if (actionKey !== '' && answerValuesArray.length === recordingOfPassed.length) {
-						keyUpActionHandler('input', 'remove', $inputText)
-
-
-					}
-
-					document.removeEventListener('keyup', createNextQuestionsHandler)
+					// document.removeEventListener('keyup', createNextQuestionsHandler)
 					// console.log('-----next удалил обработчик-----')
 
 					nextBlock = id + 1
@@ -334,9 +333,10 @@ $$.modal = function(options) {
 					++count
 					// всегда разблокировывать кнопку prev при нажатии кнопки next
 					addActionLockButtons($prevBtn, 'enabled')
-
 					// блокируем кнопку, если следующие вопросы еще не были пройдены
 					blockWithUnansweredQuestions(nextBlock)
+					addActionLockButtons($nextBtn, 'disabled')
+
 					break
 
 				case 'inputText':
@@ -353,7 +353,6 @@ $$.modal = function(options) {
 					}
 					addActionLockButtons($nextBtn, 'disabled')
 					// console.log('!!!!inputText!!!!')
-
 					return
 
 				default:
@@ -368,12 +367,24 @@ $$.modal = function(options) {
 			if (nextBlock <= options.modalContent.length) {
 				renderNextQuestion(nextBlock, action)
 			} else {
-				renderForm()
+				renderForm(answerValuesArray)
+				animateHiding()
 			}
+		},
+		thankAlert() {
+			const alertMessage = document.createElement('div')
+			const form = document.querySelector('.js-form-wrap')
+			alertMessage.classList.add('quiz-widget__thank-alert')
+			alertMessage.insertAdjacentHTML('beforeend','<h2>Спасибо за обращение.<br>Мы свяжемся с Вами в течении 10 минут.</h2>')
+			form.innerHTML = ''
+			form.append(alertMessage)
+		// 	`<div id="popup-sendok" className="white-popup">
+		// 		<h2>Спасибо за обращение.<br>Мы свяжемся с Вами в течении 10 минут.</h2>
+		// </div>`
 		}
 	}
 
-	// удалить или добавить обработчика событий
+	// удаление/добавление обработчика событий
 	function keyUpActionHandler(handler, action, element) {
 		const $answerInputText = element
 
@@ -438,7 +449,7 @@ $$.modal = function(options) {
 						saveInputText(id)
 					}
 					blockWithUnansweredQuestions(id)
-					keyUpActionHandler('input', 'add', document.querySelector('.js-answer-input-text'))
+					// keyUpActionHandler('input', 'add', document.querySelector('.js-answer-input-text'))
 					document.addEventListener('keyup', createNextQuestionsHandler)
 					// console.log('++++РЕНДЕР ДОБАВИЛ ОБРАБОТЧИК++++')
 					clearTimeout(loading)
@@ -487,12 +498,25 @@ $$.modal = function(options) {
 		const answerBlocks = document.querySelectorAll('[data-animation]')
 		setSlowCycle(answerBlocks, 'output')
 	}
-	
+
 	// плавный приход блоков
 	function setSmoothInput(action = '') {
 		const $answerBlock = document.querySelector('[data-animation-block]')
+		const answerBlocks = document.querySelectorAll('[data-animation]')
+		let decreaze = 10000
+
+		answerBlocks.forEach(label => {
+			decreaze = decreaze - 1000
+			label.style.zIndex = decreaze
+		})
 		action === 'add' ? $answerBlock.classList.add('active') : $answerBlock.classList.remove('active')
 
+	}
+
+	// скрытие футера и aside после всех ответов
+	function animateHiding() {
+		document.querySelector('.js-footer').classList.add('animate')
+		document.querySelector('.js-aside').classList.add('animate')
 	}
 
 	// медленный цикл
@@ -511,13 +535,23 @@ $$.modal = function(options) {
 	}
 
 	// рендер формы после окончания вопросов
-	function renderForm() {
+	function renderForm(answerValuesArray) {
 		const $renderModal = _setModalForm()
 		const loading = setTimeout(() => {
 		// вывод контента
-		modal.setFormContent($renderModal)
+			modal.setFormContent($renderModal)
+
 			clearTimeout(loading)
 		}, 1000)
+		const animate = setTimeout(() => {
+			document.querySelector('.js-form-left').classList.add('smooth')
+			document.querySelector('.js-form-right').classList.add('smooth')
+			document.querySelector('.js-send-form-btn').addEventListener('click', sendDataForm)
+			document.addEventListener('keyup', sendDataForm)
+			$$.receivedData = answerValuesArray
+			form.validate()
+			clearTimeout(animate)
+		}, 1200)
 	}
 
 	const closeModalListener = event => {

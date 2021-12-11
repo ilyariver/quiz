@@ -8,7 +8,7 @@ function setTariff(tariff){
 function openPopupSendOk() {
   $.magnificPopup.open({
     items: {
-        src: '#popup-sendok' 
+        src: '#popup-sendok'
     },
     type: 'inline'
   });
@@ -18,77 +18,85 @@ function setAnalytics(name) {
     case 'callme':
       // ==== Позвонить мне
       fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'zayavka':
       // ==== Оставить заявку
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'inj':
       // ==== Пригласите БЕСПЛАТНО инженера
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'rasschet':
       // ==== Заказать рассчет детальной сметы
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'rasschetdet':
       // ==== Формы рассчета стоимости с параметрами
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'hassmeta':
       // ==== Уже есть смета?
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'zakdes':
       // ==== Закажите дизайн-проект
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'rassrochka':
       // ==== Получить рассрочку
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'questions':
       // ==== Остались вопросы?
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'offer':
       // ==== Получить предложение
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
     case 'person':
       // ==== Мы открыты для вас
 fbq('track', 'Lead');
-      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' }); 
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
+      ym(82183891,'reachGoal','lead');
+      // ====
+      break;
+
+    case 'quiz':
+      // ==== Ответы в квизе
+      fbq('track', 'Lead');
+      gtag('event', 'send_form_event', { 'event_category' : 'send_form_category', 'event_label' : 'send_form_label' });
       ym(82183891,'reachGoal','lead');
       // ====
       break;
@@ -106,7 +114,8 @@ var forms = {
   rassrochka: 'Получить рассрочку',
   questions: 'Остались вопросы ?',
   offer: 'Получить предложение',
-  person: 'Мы открыты для вас'
+  person: 'Мы открыты для вас',
+  quiz: 'Ответы в квизе',
 }
 var fields = {
   name: "Имя",
@@ -158,25 +167,25 @@ $(function() {
     });
 
     if(!formError) {
-		
+
 /* send calltouch */
 try {
-	var fio = form.find('input[name="name"]').val(); 
-	var phone = form.find('input[name="phone"]').val(); 
-	var mail = form.find('input[name="email"]').val(); 
+	var fio = form.find('input[name="name"]').val();
+	var phone = form.find('input[name="phone"]').val();
+	var mail = form.find('input[name="email"]').val();
 	var ct_site_id = '47217';
 	var sub = forms[formName];
-	var ct_data = {             
+	var ct_data = {
 		fio: fio,
 		phoneNumber: phone,
 		email: mail,
 		subject: sub,
-		sessionId: window.call_value 
+		sessionId: window.call_value
 	};
-	jQuery.ajax({  
+	jQuery.ajax({
 	  url: 'https://api.calltouch.ru/calls-service/RestAPI/requests/'+ct_site_id+'/register/',
 	  dataType: 'json', type: 'POST', data: ct_data, async: false
-	}); 
+	});
 } catch(e) { }
 /* send calltouch */
 
@@ -212,7 +221,7 @@ try {
         // отправка без файла
         axios({
           method: 'POST',
-          headers: { 
+          headers: {
             // 'Content-Type': 'multipart/form-data'
             'Content-Type': 'application/x-www-form-urlencoded'
           },
@@ -266,5 +275,5 @@ try {
     }
   }, false);
   */
- 
+
 });
