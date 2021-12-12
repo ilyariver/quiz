@@ -70,7 +70,6 @@ function createNextQuestionsHandler(event) {
 			return answerTarget.querySelector('input[type=radio]').value
 		}
 		if (inputText && inputText) {
-			console.log('input ответ')
 			return {inputText: inputText.value, type: 'inputText'}
 		}
 	}
@@ -96,12 +95,10 @@ function createNextQuestionsHandler(event) {
 
 	// событие по radio, отправка id контента и название ответа
 	if (answerValue && !pressedPrevButton && !theObject && !inputTarget) {
-		console.log('радио отправка')
 	 	quiz.switchQuestion(contentId, 'answer', answerValue)
 	}
 	// событие по enter
 	if (theObject && answerValue.inputText !== '' && action === 'keyup') {
-		console.log('отправка ENTER')
 		return quiz.switchQuestion(contentId, 'next', answerValue)
 	}
 
@@ -136,9 +133,15 @@ function createNextQuestionsHandler(event) {
 	}
 }
 
+let loading = true
+
 // обработчик формы
 function sendDataForm(event) {
-	form.send(event)
+	if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.target.classList.contains('js-send-form-btn')) {
+		document.querySelector('.js-send-form-btn').removeEventListener('click', sendDataForm)
+		document.removeEventListener('keyup', sendDataForm)
+		form.send(event, loading)
+	}
 }
 
 

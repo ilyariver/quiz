@@ -60,7 +60,7 @@ $$.modal = function(options) {
 	                    </div>
 	                    <div class="quiz-widget__aside js-aside">
 	                        <div class="quiz-widget__bonus">
-	                            <div class="quiz-widget__bonus-img-container">
+	                            <div class="quiz-widget__bonus-img-container veil">
 	                                <span class="quiz-widget__bonus-text">Натяжные потолки</span>
 	                                <img class="quiz-widget__bonus-img" src="/img/22-2.jpg" alt="Бонус">
 	                            </div>
@@ -173,11 +173,21 @@ $$.modal = function(options) {
 	const _setModalForm = () => `
 		<div class="form js-form-wrap">
       <div class="form__left js-form-left">
+      	<div class="form__left-arrow js-form-arrow">
+					<svg data-v-2be8f1c4="" width="64" height="64" viewBox="0 0 64 64" fill="#FFBD59FF">
+						<g data-v-2be8f1c4=""><path data-v-2be8f1c4="" d="m63.386,16.193l.002-.002c0.002-0.003 0.004-0.006 0.006-0.01 
+						0.172-0.195 0.298-0.43 0.399-0.678 0.032-0.076 0.053-0.148 0.076-0.225 0.058-0.191 0.094-0.389 0.106-0.596 
+						0.006-0.076 0.018-0.148 0.016-0.226 0-0.04 0.01-0.076 
+						0.008-0.115-0.014-0.239-0.062-0.47-0.136-0.687-0.006-0.023-0.022-0.041-0.03-0.064-0.088-0.239-0.214-0.451-0.363-0.645-0.021-0.027-0.028-0.063-0.05-0.09l-10.311-12.146c-0.789-0.93-2.084-0.948-2.894-0.037-0.808,0.91-0.823,2.402-0.032,3.334l5.558,6.549c-8.121-1.076-16.104,0.633-16.481,0.717-24.646,4.467-42.087,27.227-38.88,50.736 0.159,1.164 
+						1.028,1.992 2.019,1.992 0.106,0 0.212-0.009 0.32-0.027 1.116-0.203 1.878-1.409 1.704-2.696-2.857-20.94 13.056-41.282 35.537-45.358 0.103-0.024 8.351-1.794 
+						16.117-0.574l-8.577,5.093c-1.005,0.598-1.398,2.02-0.881,3.177 0.516,1.159 1.748,1.608 2.756,1.017l13.52-8.028c0.183-0.111 0.347-0.25 0.491-0.411z"></path></g>
+      		</svg>
+				</div>
         <div class="form__message-content">
           <h1 class="form__title">На какой номер отправить расчет сроков и стоимости ремонта?</h1>
           <div class="form__bonus-title">ВАШ БОНУС</div>
-          <div class="quiz-widget__bonus form__bonus">
-            <div class="quiz-widget__bonus-img-container">
+          <div class="quiz-widget__bonus-unlock js-bonus-lock lock form__bonus">
+            <div class="quiz-widget__bonus-img-container veil js-bonus-veil">
               <span class="quiz-widget__bonus-text">Натяжные потолки</span>
               <img class="quiz-widget__bonus-img" src="/img/22-2.jpg" alt="Бонус">
             </div>
@@ -193,7 +203,7 @@ $$.modal = function(options) {
           </div>
           <div class="form__field error_div">
             <div class="form__field-name">Введите телефон*</div>
-            <input type="text" name="phone" class="form__input js-phone-input" maxlength="12" data-input>
+            <input type="text" name="phone" class="form__input js-phone-input" data-input>
             <div class="form__field-icon"></div>
           </div>
           <div class="form__button-wrap">
@@ -257,7 +267,6 @@ $$.modal = function(options) {
 		switchQuestion(id, action = 'answer', answerValue = '', actionKey) {
 			const $prevBtn = document.querySelector('.js-btn-prev')
 			const $nextBtn = document.querySelector('.js-btn-next')
-			const $inputText = document.querySelector('.js-answer-input-text')
 
 			// запись ответов в массив только при нажатии на ответ
 			if (answerValue !== '' && action !== 'next' && actionKey !== 'keyup' && answerValue.lastValue !== '') {
@@ -297,8 +306,6 @@ $$.modal = function(options) {
 					// разблокировать кнопку назад
 					addActionLockButtons($prevBtn, 'enabled')
 					addActionLockButtons($nextBtn, 'disabled')
-					// document.removeEventListener('keyup', createNextQuestionsHandler)
-					// console.log('----answer удалил обработчик----')
 
 					break
 
@@ -307,10 +314,6 @@ $$.modal = function(options) {
 					if (nextBlock !== START_QUESTION_PAGE) {
 						nextBlock = id - 1
 						--count
-						// разблокировать кнопку next если данный id есть в массиве пройденных
-						// if ([...new Set(recordingOfPassed)].includes(id)) {
-						// 	addActionLockButtons($nextBtn, 'enabled')
-						// }
 					}
 					// если следующая страница начальная кнопка prev блокируется
 					if (nextBlock === START_QUESTION_PAGE) {
@@ -318,16 +321,11 @@ $$.modal = function(options) {
 					}
 					// блокируем кнопку, если следующие вопросы еще не были пройдены
 					blockWithUnansweredQuestions(nextBlock)
-					// document.removeEventListener('keyup', createNextQuestionsHandler)
-					// console.log('----prev удалил обработчик----')
 
 
 					break
 
 				case 'next':
-					// document.removeEventListener('keyup', createNextQuestionsHandler)
-					// console.log('-----next удалил обработчик-----')
-
 					nextBlock = id + 1
 					// с помощью count всегда прибавляем убавленное prev`ом
 					++count
@@ -352,15 +350,12 @@ $$.modal = function(options) {
 						return
 					}
 					addActionLockButtons($nextBtn, 'disabled')
-					// console.log('!!!!inputText!!!!')
 					return
 
 				default:
 					break
 			}
 			console.log('все ответы',answerValuesArray)
-			// console.log('все ответы количество',answerValuesArray.length)
-			// console.log('все id количество',[...new Set(recordingOfPassed)].length)
 
 			if (answerValuesArray.length !== [...new Set(recordingOfPassed)].length) return
 			// рендерить вопросы пока id/порядковый номер квиза не превысит количество вопросов
@@ -378,22 +373,6 @@ $$.modal = function(options) {
 			alertMessage.insertAdjacentHTML('beforeend','<h2>Спасибо за обращение.<br>Мы свяжемся с Вами в течении 10 минут.</h2>')
 			form.innerHTML = ''
 			form.append(alertMessage)
-		// 	`<div id="popup-sendok" className="white-popup">
-		// 		<h2>Спасибо за обращение.<br>Мы свяжемся с Вами в течении 10 минут.</h2>
-		// </div>`
-		}
-	}
-
-	// удаление/добавление обработчика событий
-	function keyUpActionHandler(handler, action, element) {
-		const $answerInputText = element
-
-		if (!$answerInputText) return
-		if (action === 'remove') {
-			$answerInputText.removeEventListener(handler, createNextQuestionsHandler)
-		}
-		if (action === 'add') {
-			$answerInputText.addEventListener(handler, createNextQuestionsHandler)
 		}
 	}
 
@@ -449,9 +428,7 @@ $$.modal = function(options) {
 						saveInputText(id)
 					}
 					blockWithUnansweredQuestions(id)
-					// keyUpActionHandler('input', 'add', document.querySelector('.js-answer-input-text'))
 					document.addEventListener('keyup', createNextQuestionsHandler)
-					// console.log('++++РЕНДЕР ДОБАВИЛ ОБРАБОТЧИК++++')
 					clearTimeout(loading)
 				}, TRANSITION_ANIMATION)
 			}
@@ -534,6 +511,24 @@ $$.modal = function(options) {
 		iterator(0)
 	}
 
+	// снять блок
+	function removeLock() {
+		const lock = document.querySelector('.js-bonus-lock')
+		const veil = document.querySelector('.js-bonus-veil')
+		const arrow = document.querySelector('.js-form-arrow')
+		setTimeout(() => {
+			lock.classList.add('moving')
+		}, 1500)
+		setTimeout(() => {
+			lock.classList.remove('moving')
+			lock.classList.remove('lock')
+			veil.classList.remove('veil')
+		}, 2500)
+		setTimeout(() => {
+			arrow.classList.add('animate')
+		}, 3000)
+	}
+
 	// рендер формы после окончания вопросов
 	function renderForm(answerValuesArray) {
 		const $renderModal = _setModalForm()
@@ -548,6 +543,7 @@ $$.modal = function(options) {
 			document.querySelector('.js-form-right').classList.add('smooth')
 			document.querySelector('.js-send-form-btn').addEventListener('click', sendDataForm)
 			document.addEventListener('keyup', sendDataForm)
+			removeLock()
 			$$.receivedData = answerValuesArray
 			form.validate()
 			clearTimeout(animate)

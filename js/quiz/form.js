@@ -1,24 +1,8 @@
 $$.form = function(options) {
-
-
 	return {
-		getData(answerValuesArray) {
-			return answerValuesArray
-		},
-		send(event) {
-			// document.querySelector('.js-form-right').addEventListener('submit', event => {
-			// 	event.preventDefault()
-			// 	const formInputs = document.querySelectorAll('[data-input]')
-			//
-			// 	formInputs.forEach(input => {
-			// 		if (input.value === '') {
-			// 			input.classList.add('field-error')
-			// 		}
-			// 	})
-			// })
+		send(event, loading) {
 			let fields = {}
 			let action = ''
-			let self
 
 			options.data.forEach(item => {
 				fields[item.questions.fields] = item.questions.title
@@ -68,7 +52,7 @@ $$.form = function(options) {
 					var field = $(this)
 					var fieldName = field.attr('name')
 					var fieldValue = field.val()
-					debugger
+
 					if (fieldValue) {
 						field.removeClass('field-error')
 						formDataName.push(
@@ -76,7 +60,7 @@ $$.form = function(options) {
 								name: fields[fieldName],
 								value: fieldValue
 							}
-						);
+						)
 					} else {
 						formError = true
 						field.addClass('field-error')
@@ -85,7 +69,7 @@ $$.form = function(options) {
 
 				formDataSend.fields.unshift(...formDataName)
 
-				if (!formError) {
+				if (!formError && loading) {
 
 					/* send calltouch */
 					try {
@@ -124,7 +108,6 @@ $$.form = function(options) {
 									quiz.thankAlert()
 									// аналитика
 									setAnalytics(formName)
-
 									if (http.responseText.indexOf(f.name.value) === 0) { // очистить поля формы, если в ответе первым словом будет имя отправителя (nameFF)
 										th.trigger('reset')
 									}
@@ -156,12 +139,9 @@ $$.form = function(options) {
 									quiz.thankAlert()
 								}, 500)
 								form.find('input, textarea').val('')
-								document.querySelector('.js-send-form-btn').removeEventListener('click', sendDataForm)
-								document.removeEventListener('keyup', sendDataForm)
 								quiz.close()
 								// аналитика
 								setAnalytics(formName)
-
 							})
 							.catch((error) => {
 								console.log(error)
@@ -171,21 +151,9 @@ $$.form = function(options) {
 			}
 		},
 		validate() {
-			const phoneInput = document.querySelector('.js-phone-input')
-			// Проверяем фокус
-			phoneInput.addEventListener('focus', _ => {
-				// Если там ничего нет или есть, но левое
-				if (!/^\+\d*$/.test(phoneInput.value))
-					// То вставляем знак плюса как значение
-					phoneInput.value = '+7'
-			})
-
-			phoneInput.addEventListener('keypress', e => {
-				// Отменяем ввод не цифр
-				if (!/\d/.test(e.key)) {
-					e.preventDefault()
-				}
-			})
+			$(function($) {
+				$('input[name=phone]').mask('+7(999)999-99-99');
+			});
 		},
 	}
 }
